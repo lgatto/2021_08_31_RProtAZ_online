@@ -6,18 +6,27 @@
 
 ** Course description:
 
-This course covers how to access, manipulate, visualise and analyse mass spectrometry (MS) and quantitative proteomics data, using R/Bioconductor packages..
-The course will be based on the following materials: https://rformassspectrometry.github.io/docs/
+This course covers how to access, manipulate, visualise and analyse
+mass spectrometry (MS) and quantitative proteomics data, using
+R/Bioconductor packages..  The course will be based on the following
+materials: https://rformassspectrometry.github.io/docs/
 
 ** Audience:
 
-Participants need to have a working knowledge of R (R syntax, commonly used functions, basic data structures such as data frames, vectors, matrices, … and their manipulation).
-The Data Carpentry courses, WSBIM1207 (https://uclouvain-cbio.github.io/WSBIM1207/) and/or WSBIM1322 (https://uclouvain-cbio.github.io/WSBIM1322/)  course are suggested as a prerequisite to this course but not compulsory if you already have a working knowledge in R as mentioned above.
-Familiarity with other Bioconductor omics data classes and the tidyverse syntax is useful, but not required.
+Participants need to have a working knowledge of R (R syntax, commonly
+used functions, basic data structures such as data frames, vectors,
+matrices, … and their manipulation).  The Data Carpentry courses,
+WSBIM1207 (https://uclouvain-cbio.github.io/WSBIM1207/) and/or
+WSBIM1322 (https://uclouvain-cbio.github.io/WSBIM1322/) course are
+suggested as a prerequisite to this course but not compulsory if you
+already have a working knowledge in R as mentioned above.  Familiarity
+with other Bioconductor omics data classes and the tidyverse syntax is
+useful, but not required.
 
 ** Aims:
 During this course you will learn about:
-- R/Bioconductor data structures for mass spectrometry data and proteomics data
+- R/Bioconductor data structures for mass spectrometry data and
+  proteomics data
 - Accessing data from the public PRIDE repository
 - Reading, manipulating and visualising raw data
 - Reading, visualising and processing quantitative data
