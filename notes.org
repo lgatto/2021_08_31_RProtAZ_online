@@ -1,0 +1,58 @@
+#+TITLE: Exploring, visualising and analysing mass spectrometry-based proteomics data in R
+
+* General information
+
+- Dates: 31/08/2021 – 9/09/2021
+
+** Course description:
+
+This course covers how to access, manipulate, visualise and analyse mass spectrometry (MS) and quantitative proteomics data, using R/Bioconductor packages..
+The course will be based on the following materials: https://rformassspectrometry.github.io/docs/
+
+** Audience:
+
+Participants need to have a working knowledge of R (R syntax, commonly used functions, basic data structures such as data frames, vectors, matrices, … and their manipulation).
+The Data Carpentry courses, WSBIM1207 (https://uclouvain-cbio.github.io/WSBIM1207/) and/or WSBIM1322 (https://uclouvain-cbio.github.io/WSBIM1322/)  course are suggested as a prerequisite to this course but not compulsory if you already have a working knowledge in R as mentioned above.
+Familiarity with other Bioconductor omics data classes and the tidyverse syntax is useful, but not required.
+
+** Aims:
+During this course you will learn about:
+- R/Bioconductor data structures for mass spectrometry data and proteomics data
+- Accessing data from the public PRIDE repository
+- Reading, manipulating and visualising raw data
+- Reading, visualising and processing quantitative data
+- Learn how the MS and proteomics R/Bioconductor infrastructure fits
+  in the general Bioconductor ecosystem.
+
+
+** Learning Objectives:
+
+After this course you should be able to:
+- Prepare/convert proteomics data for it to be analysed in R.
+- Import MS experiments and extract, process and visualise parts all
+  or thereof, such as for example plot the raw spectra for a protein
+  of interest.
+- Generate quantitative data or import data from third party software
+  such as, for example, MaxQuant or Proteome Discoverer.
+- Process and visualise and analyse quantitative data in R such as,
+  for example, filter or impute missing values, produce heatmaps or
+  PCA plots, normalise your data and run a statistical test.
+
+** Timetable:
+
+|-----+------------------------------------------------------------------------------------------------------------+----------------+----------+-----------|
+| Day | Title                                                                                                      | Duration (hrs) | Date     | Time (UK) |
+|-----+------------------------------------------------------------------------------------------------------------+----------------+----------+-----------|
+|   1 | Troubleshooting software installation (30 min)                                                             |            0.5 | Aug 31st | 1-3:30 pm |
+|   1 | Introduction: a typical MS experiment and file formats                                                     |              2 |          |           |
+|-----+------------------------------------------------------------------------------------------------------------+----------------+----------+-----------|
+|   2 | Raw data: introduction, data structures, data input/out                                                    |              3 | Sep 1st  | 1-4  pm   |
+|-----+------------------------------------------------------------------------------------------------------------+----------------+----------+-----------|
+|   3 | Identification data: parsing search results, combining raw and id data and visualising identification data |              2 | Sep 2nd  | 1-3 pm    |
+|-----+------------------------------------------------------------------------------------------------------------+----------------+----------+-----------|
+|   4 | Quantitative proteomics: introduction, data structures, data input/output                                  |              3 | Sep 7th  | 1-5 pm    |
+|     | BYOD (1 hr)                                                                                                |              1 |          |           |
+|-----+------------------------------------------------------------------------------------------------------------+----------------+----------+-----------|
+|   5 | Quantitative proteomics: visualisation and analysis                                                        |              3 | Sep 9th  | 1-5 pm    |
+|     | BYOD (1 hr)                                                                                                |              1 |          |           |
+|-----+------------------------------------------------------------------------------------------------------------+----------------+----------+-----------|
