@@ -33,7 +33,6 @@ During this course you will learn about:
 - Learn how the MS and proteomics R/Bioconductor infrastructure fits
   in the general Bioconductor ecosystem.
 
-
 ** Learning Objectives:
 
 After this course you should be able to:
