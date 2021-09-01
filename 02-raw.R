@@ -118,18 +118,39 @@ pickPeaks(sp[2807]) %>%
 ## rtime variables for all MS1 spectra. Annotate the spectrum of
 ## interest (index 2807)
 
+x <- filterMsLevel(sp, 1L) %>%
+    spectraData(c("rtime", "totIonCurrent"))
+plot(x$rtime, x$totIonCurrent,
+     type = "l")
+abline(v = rtime(sp[2807]), col = "red")
 
 ## The filterPrecursorScan() function can be used to retain parent
 ## (MS1) and children scans (MS2), as defined by an acquisition
 ## number. Use it to extract the MS1 scan of interest and all its MS2
 ## children.
 
+ms_2 <- filterPrecursorScan(sp, 2807)
+
 ## Plot the MS1 spectrum of interest and highlight all the peaks that
 ## will be selected for MS2 analysis.
 
+plotSpectra(ms_2[1], xlim = c(400, 1000))
+abline(v = precursorMz(ms_2)[-1], col = "grey")
 
 ## Zoom in mz values 521.1 and 522.5 to reveal the isotopic envelope
 ## of that peak.
 
+plotSpectra(ms_2[1], xlim = c(521.1, 522.5), type = "l")
+abline(v = precursorMz(ms_2)[-1], col = "grey")
+
 ## The plotSpectra() function is used to plot all 10 MS2 spectra in
 ## one call.
+
+plotSpectra(ms_2[-1])
+
+## Homework:
+##
+## 1. Create a Spectra object with the 3 mzML files from experiment
+##    PXD022816.
+## 2. Visualise the 3 chromatograms corresponding to the 3
+##    acquisitions in that experiment.
