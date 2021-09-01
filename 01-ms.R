@@ -57,5 +57,6 @@ px2 <- PXDataset("PXD022816")
 mzmls <- head(grep("mzML", pxfiles(px2), value = TRUE), n = 3)
 mzmls <- pxget(px2, mzmls)
 
+## 3 first msID files
 mzids <- head(grep("mzID", pxfiles(px2), value = TRUE), n = 3)
 mzids <- pxget(px2, mzids)
