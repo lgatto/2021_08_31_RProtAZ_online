@@ -154,3 +154,22 @@ plotSpectra(ms_2[-1])
 ##    PXD022816.
 ## 2. Visualise the 3 chromatograms corresponding to the 3
 ##    acquisitions in that experiment.
+
+
+px2 <- PXDataset("PXD022816")
+mzmls <- head(grep("mzML", pxfiles(px2), value = TRUE), n = 3)
+(mzmls <- pxget(px2, mzmls))
+
+(PXD022816 <- Spectra(mzmls))
+
+library(ggplot2)
+library(dplyr)
+
+filterMsLevel(PXD022816, 1L) %>%
+    spectraData(c("rtime", "totIonCurrent", "dataOrigin")) %>%
+    as_tibble() %>%
+    mutate(file =  sub("^.+_", "", basename(dataOrigin))) %>%
+    ggplot(aes(x = rtime,
+               y = totIonCurrent,
+               colour = file)) +
+    geom_line()
