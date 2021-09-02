@@ -173,3 +173,7 @@ filterMsLevel(PXD022816, 1L) %>%
                y = totIonCurrent,
                colour = file)) +
     geom_line()
+
+library(SpectraVis)
+SpectraVis::browseSpectra(PXD022816)
+SpectraVis::plotlySpectra(PXD022816[1000])
