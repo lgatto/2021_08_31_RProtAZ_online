@@ -27,6 +27,7 @@ sp0[2]
 sp0[c(1, 2, 2, 1, 1, 1)]
 
 ## a real example
+library("rpx")
 px <- PXDataset("PXD000001")
 pxfiles(px)
 f <- pxget(px, "TMT_Erwinia_1uLSike_Top10HCD_isol2_45stepped_60min_01-20141210.mzML")
