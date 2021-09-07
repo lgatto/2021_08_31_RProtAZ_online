@@ -2,10 +2,12 @@ px <- PXDataset("PXD000001")
 rw <- pxget(px, "TMT_Erwinia_1uLSike_Top10HCD_isol2_45stepped_60min_01-20141210.mzML")
 sp <- Spectra(rw)
 
+library(rpx)
 library(ggplot2)
 library(dplyr)
 library(PSM)
 library(msdata)
+library(Spectra)
 
 calculateFragments("THSQEEMQHMQR")
 
@@ -92,6 +94,8 @@ mzids <- pxget(PXD022816, mzids)
 id <- readPSMs(mzids)
 id
 
+table(id$spectrumFile)
+
 as_tibble(id) %>%
     ggplot(aes(x = MetaMorpheus.score,
                colour = isDecoy)) +
@@ -104,6 +108,8 @@ as_tibble(id) %>%
 ##    scans in the right file.
 
 sp <- Spectra(mzmls)
+
+table(basename(dataOrigin(sp)))
 
 ## primary key for spectra
 sp$pkey <-
@@ -120,4 +126,32 @@ head(id$pkey)
 id_filtered <- filterPSMs(id)
 id_filtered
 
-sp <- joinSpectraData(sp, DataFrame(id_filtered), by.x = "pkey")
+sp <- joinSpectraData(sp,
+                      DataFrame(id_filtered),
+                      by.x = "pkey")
+
+
+## Spectra clustering
+
+sp_O43175 <- sp[sp$DatabaseAccess == "O43175"]
+sp_O43175
+
+sp_O43175 <- setBackend(sp_O43175, MsBackendDataFrame())
+
+cmat <- compareSpectra(sp_O43175)
+
+rownames(cmat) <- colnames(cmat) <- strtrim(sp_O43175$sequence, 3)
+
+pheatmap::pheatmap(cmat)
+
+i <- which(rownames(cmat) == "DLP")
+
+plotSpectra(sp_O43175[i])
+
+sp_O43175$precursorCharge[i]
+sp_O43175$precursorMz[i]
+sp_O43175$modName[i]
+sp_O43175$modMass[i]
+
+plotSpectraMirror(sp_O43175[i][1],
+                  sp_O43175[i][5])
