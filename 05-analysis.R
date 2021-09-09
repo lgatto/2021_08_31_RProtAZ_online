@@ -111,12 +111,59 @@ limma::plotDensities(assay(cptac[["log_peptides"]]))
 limma::plotDensities(assay(cptac[["lognorm_peptides"]]))
 
 ## Ex: aggregate peptide features into proteins
-aggregateFeatures(cptac,
-                  i = "",
-                  name = "",
-                  fcol = "",
-                  fun = colMedians,
-                  ...
-                  )
+cptac <- aggregateFeatures(cptac,
+                           i = "lognorm_peptides",
+                           name = "proteins_med",
+                           fcol = "Leading.razor.protein",
+                           fun = colMedians, ## try MsCoreUtils::robustSummary
+                           na.rm = TRUE)
+
+
+cptac <- aggregateFeatures(cptac,
+                  i = "lognorm_peptides",
+                  name = "proteins_robust",
+                  fcol = "Leading.razor.protein",
+                  fun = MsCoreUtils::robustSummary,
+                  na.rm = TRUE)
 
 BiocManager::install("RforMassSpectrometry/QFeatures")
+
+table(rowData(cptac[["proteins_med"]])$.n)
+
+library("factoextra")
+
+pca_pep <-
+    cptac[["lognorm_peptides"]] %>%
+    filterNA() %>%
+    assay() %>%
+    t() %>%
+    prcomp(scale = TRUE, center = TRUE) %>%
+    fviz_pca_ind(habillage = cptac$condition)
+
+
+pca_prot <-
+    cptac[["proteins_med"]] %>%
+    filterNA() %>%
+    assay() %>%
+    t() %>%
+    prcomp(scale = TRUE, center = TRUE) %>%
+    fviz_pca_ind(habillage = cptac$condition)
+
+library(patchwork)
+pca_pep + pca_prot
+
+
+
+cptac["P02787ups|TRFE_HUMAN_UPS", ,
+      c("lognorm_peptides", "proteins_med")] %>%
+    longFormat() %>%
+    as_tibble() %>%
+    mutate(condition = ifelse(grepl("A", colname), "A", "B")) %>%
+    ggplot(aes(x = colname,
+               y = value,
+               colour = rowname,
+               shape = condition)) +
+    geom_point(size = 3) +
+    geom_line(aes(group = rowname)) +
+    facet_grid(~ assay) +
+    ggtitle("P02787ups|TRFE_HUMAN_UPS")
