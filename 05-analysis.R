@@ -79,6 +79,44 @@ cptac <- QFeatures(list(peptides = cptac_se))
 colData(cptac) <- colData(cptac_se)
 
 ## Ex: remove contaminants and reverse hits with filterFeatures
+cptac <- cptac %>%
+    filterFeatures(~ Reverse != "+") %>%
+    filterFeatures(~ Potential.contaminant != "+") %>%
+    filterFeatures(~ PEP < 0.05)
 
-cptac %>%
-    filterFeatures(~ Reverse != "+")
+limma::plotDensities(assay(cptac[[1]]))
+
+cptac <- logTransform(cptac,
+                      i = "peptides",
+                      name = "log_peptides")
+
+
+limma::plotDensities(assay(cptac[["log_peptides"]]))
+
+
+## Ex: normalise the data
+cptac <- normalize(cptac,
+                   i = "log_peptides",
+                   name = "lognorm_peptides",
+                   method = "center.median")
+
+plot(cptac)
+
+BiocManager::install("limma")
+BiocManager::install("MSnbase")
+
+par(mfrow = c(1, 3))
+limma::plotDensities(assay(cptac[["peptides"]]))
+limma::plotDensities(assay(cptac[["log_peptides"]]))
+limma::plotDensities(assay(cptac[["lognorm_peptides"]]))
+
+## Ex: aggregate peptide features into proteins
+aggregateFeatures(cptac,
+                  i = "",
+                  name = "",
+                  fcol = "",
+                  fun = colMedians,
+                  ...
+                  )
+
+BiocManager::install("RforMassSpectrometry/QFeatures")
